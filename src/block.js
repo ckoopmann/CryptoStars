@@ -43,13 +43,18 @@ class Block {
         self.hash = null;
 
         // Recalculate the hash of the Block
-        self.hash = SHA256(JSON.stringify(self)).toString();
+        const newHash = SHA256(JSON.stringify(self)).toString();
         // Comparing if the hashes changed
-        resolve(currentHash === self.hash);
+        resolve(currentHash === newHash);
       } catch (e) {
         reject("Error occured");
       }
     });
+  }
+
+  rehash() {
+    this.hash = null;
+    this.hash = SHA256(JSON.stringify(this)).toString();
   }
 
   /**
