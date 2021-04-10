@@ -3,11 +3,11 @@
 You are starting your journey as a Blockchain Developer, this project allows you to demonstrate
 that you are familiarized with the fundamentals concepts of a Blockchain platform.
 Concepts like:
-    - Block
-    - Blockchain
-    - Wallet
-    - Blockchain Identity
-    - Proof of Existance
+- Block
+- Blockchain
+- Wallet
+- Blockchain Identity
+- Proof of Existance
 
 Are some of the most important components in the Blockchain Framework that you will need to describe and also
 why not? Implement too.
