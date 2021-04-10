@@ -25,6 +25,12 @@ describe("Test Blockchain: ", () => {
     assert.equal(block.height, 1);
   });
 
+  it("can get block by hash", async () => {
+    const blockToFind = blockchain.chain[1];
+    const foundBlock = await blockchain.getBlockByHash(blockToFind.hash);
+    assert.equal(blockToFind, foundBlock);
+  });
+
   it("can request message", async () => {
     const message = await blockchain.requestMessageOwnershipVerification(
       address
