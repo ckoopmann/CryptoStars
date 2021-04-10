@@ -196,7 +196,7 @@ class Blockchain {
         self.chain.forEach(async (block) => {
           const data = await block.getBData();
           if (data.owner === address) {
-            stars.push(data.star);
+            stars.push(data);
           }
         });
         resolve(stars);
