@@ -2,7 +2,8 @@ const assert = require("assert");
 const { Block } = require("../src/block.js");
 
 describe("Test Block: ", () => {
-  let block = new Block("Testdata");
+  let testdata = "Testdata";
+  let block = new Block(testdata);
 
   it("Has initial height of zero", () => {
     assert.equal(block.height, 0);
@@ -14,6 +15,13 @@ describe("Test Block: ", () => {
 
   it("Has initial hash of null", () => {
     assert.equal(block.hash, null);
+  });
+
+  it("Correct data is returned", async () => {
+    let secondBlock = new Block(testdata);
+    secondBlock.height = 1;
+    const returnedData = await secondBlock.getBData();
+    assert.equal(returnedData, testdata);
   });
 
   it("Has initial previous hash of null", () => {

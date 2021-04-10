@@ -73,7 +73,6 @@ class Block {
         // Getting the encoded data saved in the Block
         // Decoding the data to retrieve the JSON representation of the object
         const dataString = hex2ascii(self.body);
-        console.log("Data String", dataString);
         // Parse the data to an object to be retrieve.
         const data = JSON.parse(dataString);
         // Resolve with the data if the object isn't the Genesis block
