@@ -31,6 +31,8 @@ describe("Test Blockchain: ", () => {
     assert.equal(blockToFind, foundBlock);
   });
 
+
+
   it("can request message", async () => {
     const message = await blockchain.requestMessageOwnershipVerification(
       address
@@ -76,4 +78,20 @@ describe("Test Blockchain: ", () => {
     const stars = await blockchain.getStarsByWalletAddress("WRONGADDRESS");
     assert.equal(stars.length, 0);
   });
+
+  it("Returns no errors for valid chain", async () => {
+    const errors = await blockchain.validateChain();
+    assert.equal(errors.length, 0);
+  });
+
+  it("Returns error if previous hash changed", async () => {
+    const oldHash = blockchain.chain[1].previousBlockHash
+    blockchain.chain[1].previousBlockHash = "123145135"
+    const errors = await blockchain.validateChain();
+    // Returns two errors since both the previous hash does not fit anymore and the block validation will fail
+    assert.equal(errors.length, 2);
+    blockchain.chain[1].previousBlockHash = oldHash
+  });
+
+
 });
