@@ -72,7 +72,15 @@ class Blockchain {
         block.hash = SHA256(JSON.stringify(block)).toString();
         self.chain.push(block);
         self.height = newHeight;
-        resolve(block);
+        const errors = await self.validateChain();
+        // Undo addition of new block if chain validation fails
+        if (errors.length > 0) {
+          self.chain.pop();
+          self.height = newHeight - 1;
+          reject("Chain validation failed");
+        } else {
+          resolve(block);
+        }
       } catch (e) {
         reject(e);
       }
