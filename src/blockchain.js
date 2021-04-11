@@ -65,7 +65,7 @@ class Blockchain {
     return new Promise(async (resolve, reject) => {
       try {
         block.previousBlockHash =
-          self.height > -1 ? self.chain[self.height].hash : "";
+          self.height > -1 ? self.chain[self.height].hash : null;
         const newHeight = self.height + 1;
         block.height = newHeight;
         block.timestamp = new Date().getTime().toString().slice(0, -3);
